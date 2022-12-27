@@ -31,12 +31,15 @@ export class TodosController {
   }
 
   @Patch(':id')
-  updateTodo(@Body() updateTodoDto: AddTodoDto, @Param('id') id): string {
-    return `Updated item ${id}`;
+  updateTodo(
+    @Body() updateTodoDto: AddTodoDto,
+    @Param('id') id: string,
+  ): Promise<Todo> {
+    return this.todosService.updateTodo(id, updateTodoDto);
   }
 
   @Delete(':id')
-  deleteTodo(@Param('id') id): Promise<Todo> {
+  deleteTodo(@Param('id') id: string): Promise<Todo> {
     return this.todosService.deleteTodo(id);
   }
 }
