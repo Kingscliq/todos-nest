@@ -43,6 +43,10 @@ export class TodosService {
     const newTodo = new this.todoModel(todo);
     return await newTodo.save();
   }
+
+  async deleteTodo(id: string): Promise<Todo> {
+    return await this.todoModel.findByIdAndDelete({ _id: id });
+  }
   //   getSingleTodo(id: string): Todo {
   //     return this.
   //   }

@@ -26,8 +26,8 @@ export class TodosController {
   }
 
   @Post()
-  addTodo(@Body() addTodoDto: AddTodoDto): string {
-    return `Title: ${addTodoDto.title} - Iscompleted: ${addTodoDto.isCompleted} `;
+  addTodo(@Body() addTodoDto: AddTodoDto): Promise<Todo> {
+    return this.todosService.addTodo(addTodoDto);
   }
 
   @Patch(':id')
@@ -36,7 +36,7 @@ export class TodosController {
   }
 
   @Delete(':id')
-  deleteTodo(@Param('id') id): string {
-    return `Delete Item ${id}`;
+  deleteTodo(@Param('id') id): Promise<Todo> {
+    return this.todosService.deleteTodo(id);
   }
 }
