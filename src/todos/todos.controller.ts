@@ -16,12 +16,12 @@ import { TodosService } from './todos.service';
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
   @Get()
-  getAllTodos(): Todo[] {
+  getAllTodos(): Promise<Todo[]> {
     return this.todosService.getAllTodos();
   }
 
   @Get(':id')
-  getSingleTodo(@Param() param): Todo {
+  getSingleTodo(@Param() param): Promise<Todo> {
     return this.todosService.getSingleTodo(param.id);
   }
 
