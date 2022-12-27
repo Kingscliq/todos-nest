@@ -39,6 +39,10 @@ export class TodosService {
     return await this.todoModel.findOne({ _id: id });
   }
 
+  async addTodo(todo: Todo): Promise<Todo> {
+    const newTodo = new this.todoModel(todo);
+    return await newTodo.save();
+  }
   //   getSingleTodo(id: string): Todo {
   //     return this.
   //   }
