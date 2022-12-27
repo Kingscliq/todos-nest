@@ -9,7 +9,7 @@ import config from './config/keys'
 
 @Module({
   imports: [TodoModule, MongooseModule.forRoot(config.mongoURI)],
-  controllers: [AppController, TodosController],
-  providers: [AppService, TodosService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }
