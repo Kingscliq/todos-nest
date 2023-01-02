@@ -27,4 +27,8 @@ export class TodosService {
   async updateTodo(id: string, todo: Todo): Promise<Todo> {
     return await this.todoModel.findByIdAndUpdate(id, todo, { new: true });
   }
+
+  async sortByAsc(query: string): Promise<string> {
+    return `${query}`;
+  }
 }
