@@ -1,5 +1,5 @@
 import { CreateUserDto } from './dtos/create.user.dto';
-import { Body, Controller, Get, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -13,5 +13,10 @@ export class UsersController {
   createUser(@Body() createUserDto: CreateUserDto): string {
     console.log(createUserDto);
     return `Created user ${createUserDto.username}`;
+  }
+
+  @Get(':id')
+  getSinglUser(@Param('id', ParseIntPipe) id: number): { id: number } {
+    return { id };
   }
 }
