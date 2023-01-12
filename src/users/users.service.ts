@@ -1,4 +1,4 @@
-import { CreateUserDetail } from './interfaces/user.interface';
+import { UserDetail } from './interfaces/user.interface';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -13,12 +13,13 @@ export class UsersService {
     return this.users;
   };
 
-  createUser = (details: CreateUserDetail) => {
+  createUser = (details: UserDetail) => {
     this.users.push(details as any);
     return;
   };
 
-  fetchSingleUser = () => {
-    return null;
+  fetchSingleUser = (id: number): UserDetail => {
+    const userDetail = this.users.find((user) => user.id === id);
+    return userDetail;
   };
 }

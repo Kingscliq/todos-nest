@@ -1,7 +1,20 @@
 import { CreateUserDto } from './dtos/create.user.dto';
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Query,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { Users } from './dtos/users.dto';
 import { UsersService } from './users.service';
+import { UserDetail } from './interfaces/user.interface';
 
 @Controller('users')
 export class UsersController {
@@ -30,7 +43,12 @@ export class UsersController {
   }
 
   @Get(':id')
-  getSinglUser(@Param('id', ParseIntPipe) id: number): { id: number } {
-    return { id };
+  getSinglUser(@Param('id', ParseIntPipe) id: number): UserDetail {
+    const user = this.userService.fetchSingleUser(id);
+
+    if (!user) {
+      throw new HttpException('User not Found', HttpStatus.BAD_REQUEST);
+    }
+    return user;
   }
 }
