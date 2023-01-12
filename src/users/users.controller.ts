@@ -22,6 +22,7 @@ export class UsersController {
   getAllUsers(): Users[] {
     return this.userService.fetchUsers();
   }
+
   @Get(':id')
   getSinglUser(@Param('id', ParseIntPipe) id: number): { id: number } {
     return { id };
