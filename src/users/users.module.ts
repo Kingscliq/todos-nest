@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestMiddleware, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { UsersController } from './users.controller';
 import { UsersMiddleware } from './users.middleware';
 import { UsersService } from './users.service';
@@ -9,6 +9,6 @@ import { UsersService } from './users.service';
 })
 export class UsersModule implements NestModule {
   configure(auth: MiddlewareConsumer) {
-    auth.apply(UsersMiddleware).forRoutes('users');
+    auth.apply(UsersMiddleware).forRoutes(UsersController); // This makes it possible to use all routes inside of users controller
   }
 }
