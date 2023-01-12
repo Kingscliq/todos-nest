@@ -14,8 +14,14 @@ export class UsersController {
 
   @Post('register')
   @UsePipes(new ValidationPipe()) // Add a new Instance of validation pipes for class validators to work
-  createUser(@Body() createUserDto: CreateUserDto): string {
-    return `Created user ${createUserDto.username}`;
+  createUser(@Body() createUserDto: CreateUserDto): { message: string; status: number; success: boolean } {
+    this.userService.createUser(createUserDto);
+
+    return {
+      message: 'User Created SuccessFully',
+      status: 200,
+      success: true,
+    };
   }
 
   @Get()

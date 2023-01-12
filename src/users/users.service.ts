@@ -1,5 +1,4 @@
 import { CreateUserDetail } from './interfaces/user.interface';
-import { CreateUserDto } from './dtos/create.user.dto';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -9,12 +8,14 @@ export class UsersService {
     { id: 5, username: 'paul', email: 'paul@gmail.com' },
     { id: 10, username: 'darl', email: 'darl@gmail.com' },
   ];
+
   fetchUsers = () => {
     return this.users;
   };
 
   createUser = (details: CreateUserDetail) => {
-    return this.users.push(details);
+    this.users.push(details as any);
+    return;
   };
 
   fetchSingleUser = () => {

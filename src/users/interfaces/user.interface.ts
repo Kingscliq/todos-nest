@@ -1,5 +1,5 @@
 export interface CreateUserDetail {
-  id: number;
+  id?: number;
   username: string;
   email: string;
 }
