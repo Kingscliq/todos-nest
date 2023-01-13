@@ -15,6 +15,7 @@ import {
 import { Users } from './dtos/users.dto';
 import { UsersService } from './users.service';
 import { UserDetail } from './interfaces/user.interface';
+import { UsersPipe } from './users.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -27,7 +28,8 @@ export class UsersController {
 
   @Post('register')
   @UsePipes(new ValidationPipe()) // Add a new Instance of validation pipes for class validators to work
-  createUser(@Body() createUserDto: CreateUserDto): { message: string; status: number; success: boolean } {
+  createUser(@Body(UsersPipe) createUserDto: CreateUserDto): { message: string; status: number; success: boolean } {
+    console.log(createUserDto.age.toFixed(2));
     this.userService.createUser(createUserDto);
 
     return {
