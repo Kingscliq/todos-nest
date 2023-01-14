@@ -4,9 +4,9 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class UsersService {
   private users = [
-    { id: 2, username: 'Kings', email: 'kings@gmail.com' },
-    { id: 5, username: 'paul', email: 'paul@gmail.com' },
-    { id: 10, username: 'darl', email: 'darl@gmail.com' },
+    { id: 2, username: 'Kings', email: 'kings@gmail.com', age: 20 },
+    { id: 5, username: 'paul', email: 'paul@gmail.com', age: 24 },
+    { id: 10, username: 'darl', email: 'darl@gmail.com', age: 29 },
   ];
 
   fetchUsers = () => {
