@@ -21,7 +21,7 @@ import { AuthGuard } from './users.guard';
 
 @Controller('users')
 export class UsersController {
-  constructor(private userService: UsersService) {}
+  constructor(private userService: UsersService) { }
 
   @Get('sorted')
   @UseGuards(AuthGuard)
@@ -32,7 +32,6 @@ export class UsersController {
   @Post('register')
   @UsePipes(new ValidationPipe()) // Add a new Instance of validation pipes for class validators to work
   createUser(@Body(UsersPipe) createUserDto: CreateUserDto): { message: string; status: number; success: boolean } {
-    console.log(createUserDto.age.toFixed(2));
     this.userService.createUser(createUserDto);
 
     return {
